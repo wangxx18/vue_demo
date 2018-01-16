@@ -194,12 +194,8 @@
       <div id="content" >
         <div class="panel">
           <div class="header">
-            <a href="/?tab=all" class="topic-tab current-tab">全部</a>
-            <a href="/?tab=good" class="topic-tab ">精华</a>
-            <a href="/?tab=share" class="topic-tab ">分享</a>
-            <a href="/?tab=ask" class="topic-tab ">问答</a>
-            <a href="/?tab=job" class="topic-tab ">招聘</a>
-            <a href="/?tab=dev" class="topic-tab ">客户端测试</a>
+            <a v-for="(item,index) in list" class="topic-tab"
+                  :class="{'current-tab':index===(currentIndex)}" onclick="alert(1);" :click="topic(index)">{{item.text}}</a>
           </div>
           <list></list>
         </div>
@@ -213,8 +209,28 @@
 <script>
   import List from "../components/List.vue"
   export default {
+    data:function(){
+      return {
+        currentIndex:0,
+        list:[
+          {text:'全部'},
+          {text:'精华'},
+          {text:'分享'},
+          {text:'问答'},
+          {text:'招聘'},
+          {text:'客户端测试'}
+
+        ]
+      }
+    },
     components:{List},
-    name: 'app'
+    name: 'app',
+    methods:{
+      topic:function(val){
+        this.currentIndex = val;
+         // alert(val);
+      }
+    }
   }
 
 </script>
