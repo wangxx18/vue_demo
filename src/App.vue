@@ -51,7 +51,6 @@ Vue.filter("type", function(val) {   //全局方法 Vue.filter() 注册一个自
     padding: 0;
   }
   body {
-    background-color: #EDEEF0;
     width: 100%;
     height: 100%;
   }
