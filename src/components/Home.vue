@@ -195,7 +195,7 @@
         <div class="panel">
           <div class="header">
             <a v-for="(item,index) in list" class="topic-tab"
-                  :class="{'current-tab':index===(currentIndex)}" onclick="alert(1);" :click="topic(index)">{{item.text}}</a>
+                  :class="{'current-tab':index===(currentIndex)}" @click="topic(index)">{{item.text}}</a>
           </div>
           <list></list>
         </div>
@@ -229,6 +229,7 @@
       topic:function(val){
         this.currentIndex = val;
          // alert(val);
+        console.log(this.currentIndex);
       }
     }
   }
