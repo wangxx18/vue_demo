@@ -197,7 +197,7 @@
             <a v-for="(item,index) in list" class="topic-tab"
                   :class="{'current-tab':index===(currentIndex)}" @click="topic(index)">{{item.text}}</a>
           </div>
-          <list></list>
+          <list v-bind:tab="tab"></list>
         </div>
       </div>
 
@@ -213,14 +213,15 @@
       return {
         currentIndex:0,
         list:[
-          {text:'全部'},
-          {text:'精华'},
-          {text:'分享'},
-          {text:'问答'},
-          {text:'招聘'},
-          {text:'客户端测试'}
+          {text:'全部',tab:'all'},
+          {text:'精华',tab:'good'},
+          {text:'分享',tab:'share'},
+          {text:'问答',tab:'ask'},
+          {text:'招聘',tab:'job'},
+          {text:'客户端测试',tab:'dev'}
 
-        ]
+        ],
+        tab:''
       }
     },
     components:{List},
@@ -228,7 +229,9 @@
     methods:{
       topic:function(val){
         this.currentIndex = val;
+        this.tab = this.list[val].tab;
          // alert(val);
+        console.log(this.tab);
         console.log(this.currentIndex);
       }
     }

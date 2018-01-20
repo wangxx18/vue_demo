@@ -33,13 +33,16 @@
   export default {
     data:function(){
       return {
-       list:[]
+        list:[],
+
       }
     },
+    props:['tab'],
     methods:{
       getData:function(){
-        var url = 'https://cnodejs.org/api/v1/topics';
+        var url = 'https://cnodejs.org/api/v1/topics/?tab='+this.tab;
         this.$http.get(url).then(function(rep){
+          console.log(this.tab);
           console.log(rep);
           this.list = rep.body.data
         })
@@ -47,6 +50,14 @@
     },
     created: function () {
       this.getData();
+    },
+    watch:{
+      'tab':function(newval,oldval){
+        this.tab = newval;
+        this.getData();
+        console.log(newval);
+        console.log(oldval);
+      }
     },
     filters: {
       lastTime: function (val) {
