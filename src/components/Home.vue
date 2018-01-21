@@ -197,7 +197,11 @@
             <a v-for="(item,index) in list" class="topic-tab"
                   :class="{'current-tab':index===(currentIndex)}" @click="topic(index)">{{item.text}}</a>
           </div>
-          <list v-bind:tab="tab"></list>
+          <div class="inner no-padding">
+            <list v-bind:tab="tab"></list>
+            <page v-on:child-c="childData"></page>
+          </div>
+
         </div>
       </div>
 
@@ -208,6 +212,7 @@
 
 <script>
   import List from "../components/List.vue"
+  import Page from "../components/Page.vue"
   export default {
     data:function(){
       return {
@@ -221,10 +226,11 @@
           {text:'客户端测试',tab:'dev'}
 
         ],
-        tab:''
+        tab:'',
+        pData:''
       }
     },
-    components:{List},
+    components:{List,Page},
     name: 'app',
     methods:{
       topic:function(val){
@@ -233,6 +239,10 @@
          // alert(val);
         console.log(this.tab);
         console.log(this.currentIndex);
+      },
+      childData:function(p){
+        console.log(2222);
+        console.log(p);
       }
     }
   }
