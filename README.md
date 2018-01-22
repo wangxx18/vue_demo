@@ -1,4 +1,4 @@
-# 初学Vue 编写vue_demo
+# vue_demo
 
 > A Vue.js project
 
