@@ -41,5 +41,5 @@
   }
 </script>
 <style>
-
+  @import "../assets/css/index.css";
 </style>

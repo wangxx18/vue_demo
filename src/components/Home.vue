@@ -10,7 +10,10 @@
 
             <div>
               您可以
-              <a href="/signin">登录</a>
+              <!--<a href="/signin">登录</a>-->
+              <router-link :to="{ name: 'Login',params: { } }" >
+                登录
+              </router-link>
               或
               <a href="/signup">注册</a>
               , 也可以

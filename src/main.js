@@ -13,6 +13,9 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 Vue.component("v-header",Header);
 Vue.component("v-footer",Footer);
+//挂载全局变量
+import global_ from './components/Global.vue'
+Vue.prototype.Global = global_;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
