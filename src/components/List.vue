@@ -3,7 +3,7 @@
     <div id="topic_list" v-for ="item in list">
       <div class="cell">
         <a class="user_avatar pull-left" href="/user/JChehe">
-          <img :src="item.author.avatar_url" title="JChehe">
+          <img :src="item.author.avatar_url" :title="item.author.loginname">
         </a>
         <span class="reply_count pull-left">
           <span class="count_of_replies" title="回复数">{{item.reply_count}}</span>
@@ -43,7 +43,7 @@
           var url = 'https://cnodejs.org/api/v1/topics/?tab='+this.tab;
           this.$http.get(url).then(function(rep){
 //          console.log(this.tab);
-//          console.log(rep);
+          console.log(rep);
           this.list = rep.body.data
         })
       }

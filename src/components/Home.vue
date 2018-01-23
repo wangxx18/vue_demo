@@ -3,11 +3,9 @@
     <div  class="home-page">
       <div id="sidebar">
 
-        <div class="panel">
-
+        <div class="panel" v-show="!userLogin">
           <div class="inner">
             <p>CNode：Node.js专业中文社区</p>
-
             <div>
               您可以
               <!--<a href="/signin">登录</a>-->
@@ -24,41 +22,43 @@
               </a>
             </div>
           </div>
-
         </div>
 
 
-
-
-
-        <div class="panel">
-          <div class="inner ads">
-
-
-
-            <a href="https://alinode.aliyun.com/?ref=cnode" target="_blank" class="banner sponsor_outlink" data-label="alinode">
-              <img src="//dn-cnode.qbox.me/Fn4D6BhOTz1IswvmzeZ1q7QW1ls_">
-            </a>
-
-
-            <div class="sep10"></div>
-
-            <a href="http://www.ucloud.cn/site/active/gift.html?utm_source=cnodejs&amp;utm_medium=content_pic_pc&amp;utm_campaign=multicloud&amp;utm_content=gift&amp;ytag=cnodejs" target="_blank" class="banner sponsor_outlink" data-label="ucloud-banner">
-              <img src="//dn-cnode.qbox.me/FgQS-GQDfqwAD_v0NuhyYUOUk5MG">
-            </a>
-
-
-            <div class="sep10"></div>
-
-            <a href="https://0x7.me/UDyj" target="_blank" class="banner sponsor_outlink" data-label="qiniu-sidebar">
-              <img src="//dn-cnode.qbox.me/Fv9R31Y6ySKKJi95ldk9TRkJ7o5O">
-            </a>
-
+        <div class="panel" v-show="userLogin">
+          <div class="header">
+            <span class="col_fade">个人信息</span>
+          </div>
+          <div class="inner">
+            <div class="user_card">
+              <div>
+                <a class="user_avatar" href="/user/wangxx321">
+                  <img :src="user.avatar_url" :title="user.loginname">
+                </a>
+                <span class="user_name"><a class="dark" href="/user/wangxx321">{{user.loginname}}</a></span>
+                <div class="board clearfix">
+                  <div class="floor">
+                    <span class="big">积分: 5 </span>
+                  </div>
+                </div>
+                <div class="space clearfix"></div>
+                <span class="signature">
+                  “
+                      这家伙很懒，什么个性签名都没有留下。
+                  ”
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
-
-
+        <div class="panel" v-show="userLogin">
+          <div class="inner">
+            <a href="/topic/create" id="create_topic_btn">
+              <span class="span-success">发布话题</span>
+            </a>
+          </div>
+        </div>
 
         <div class="panel">
           <div class="header">
@@ -87,9 +87,7 @@
                 <div><a class="dark topic_title" href="/topic/5a5d6b67afa0a121784a8c29" title="node源码_http_common.js 中是如何处理请求体的？">node源码_http_common.js 中是如何处理请求体的？</a>
                 </div>
               </li>
-
             </ul>
-
           </div>
         </div>
 
@@ -102,7 +100,6 @@
             <a class="dark" href="/users/top100">TOP 100 &gt;&gt;</a>
           </div>
           <div class="inner">
-
             <ol>
               <li>
                 <span class="top_score">20725</span>
@@ -144,9 +141,7 @@
                 <span class="top_score">4495</span>
                 <span class="user_name"><a href="/user/fengmk2">fengmk2</a></span>
               </li>
-
             </ol>
-
           </div>
         </div>
 
@@ -212,7 +207,6 @@
     <div></div>
   </div>
 </template>
-
 <script>
   import List from "../components/List.vue"
   import Page from "../components/Page.vue"
@@ -232,7 +226,8 @@
         tab:'',
         pData:'',
         msg:'',
-        user:{}
+        user:{},
+        userLogin:false,
       }
     },
     components:{List,Page},
@@ -249,13 +244,13 @@
       },
     },
     mounted:function(){
-      if(this.$route.params.user){
+      if(this.$route.params.user|| localStorage.getItem('user')){
         console.log('接收用户登录信息');
-        console.log(this.$route.params.user);
-        this.user = this.$route.params.user;
+        console.log(localStorage.getItem('user'));
+        this.user = JSON.parse(localStorage.getItem('user'));
+        this.userLogin = true;
       }
     },
-
   }
 
 </script>

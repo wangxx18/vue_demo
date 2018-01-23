@@ -20,9 +20,14 @@
               <li><a href="/getstart">新手入门</a></li>
               <li><a href="/api">API</a></li>
               <li><a href="/about" target="">关于</a></li>
-              <li><a href="/setting">设置</a></li>
-              <li>
-                <a href="/signout" data-method="post" rel="nofollow">退出</a>
+              <li v-show="login_show"><a href="/setting">设置</a></li>
+              <li v-show="login_show">
+                <a @click="out();" data-method="post" rel="nofollow">退出</a>
+              </li>
+
+              <li v-show="!login_show"><a >注册</a></li>
+              <li v-show="!login_show">
+                <a>登录</a>
               </li>
             </ul>
             <a class="btn btn-navbar" id="responsive-sidebar-trigger">
@@ -37,13 +42,29 @@
   </section>
 </template>
 <script>
-  import $ from 'jquery'
   export default {
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        msg: 'Welcome to Your Vue.js App',
+        login_show:false,
       }
-    }
+    },
+    props:['login'],
+    methods:{
+      out:function(){
+        localStorage.removeItem('user');
+      }
+    },
+    created:function(){
+//      this.login_show = true;
+    },
+    watch:{
+      'login':function(newval,oldval){
+        this.login = newval;
+        console.log(newval);
+        console.log(oldval);
+      }
+    },
 
   }
 </script>

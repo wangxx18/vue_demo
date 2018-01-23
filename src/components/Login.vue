@@ -79,6 +79,7 @@
           this.user.id = rep.body.id;
           this.user.avatar_url = rep.body.avatar_url;
           this.$router.push({name:'Home',params:{user:this.user}});
+          localStorage.setItem('user',JSON.stringify(this.user));
         });
 
 
