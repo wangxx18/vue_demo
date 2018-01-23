@@ -230,7 +230,9 @@
 
         ],
         tab:'',
-        pData:''
+        pData:'',
+        msg:'',
+        user:{}
       }
     },
     components:{List,Page},
@@ -239,15 +241,21 @@
       topic:function(val){
         this.currentIndex = val;
         this.tab = this.list[val].tab;
-         // alert(val);
         console.log(this.tab);
         console.log(this.currentIndex);
       },
       childData:function(p){
-        console.log(2222);
         console.log(p);
+      },
+    },
+    mounted:function(){
+      if(this.$route.params.user){
+        console.log('接收用户登录信息');
+        console.log(this.$route.params.user);
+        this.user = this.$route.params.user;
       }
-    }
+    },
+
   }
 
 </script>

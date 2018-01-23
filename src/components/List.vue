@@ -40,10 +40,10 @@
     props:['tab'],
     methods:{
       getData:function(){
-        var url = 'https://cnodejs.org/api/v1/topics/?tab='+this.tab;
-        this.$http.get(url).then(function(rep){
-          console.log(this.tab);
-          console.log(rep);
+          var url = 'https://cnodejs.org/api/v1/topics/?tab='+this.tab;
+          this.$http.get(url).then(function(rep){
+//          console.log(this.tab);
+//          console.log(rep);
           this.list = rep.body.data
         })
       }

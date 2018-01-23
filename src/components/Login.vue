@@ -66,17 +66,21 @@
     data:function(){
       return {
         loginname:'',
-        password:''
+        password:'',
+        user:{}
       }
     },
     methods:{
       login:function(){
         var url = this.Global.url+'/accesstoken';
         this.$http.post(url,{accesstoken:this.Global.accessToken}).then(function(rep){
-          console.log(rep);
+//          console.log(rep);
+          this.user.loginname = rep.body.loginname;
+          this.user.id = rep.body.id;
+          this.user.avatar_url = rep.body.avatar_url;
+          this.$router.push({name:'Home',params:{user:this.user}});
         });
 
-        console.log(this.Global.accessToken);
 
       }
     }
