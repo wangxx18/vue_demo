@@ -53,10 +53,18 @@
     methods:{
       out:function(){
         localStorage.removeItem('user');
+        this.login_show = false;
+        this.$router.push({name:'Home'});
+        this.$emit('quit',this.msg);
       }
     },
     created:function(){
 //      this.login_show = true;
+      if(localStorage.getItem('user')){
+        this.login_show = true;
+      }else{
+        console.log('用户未登录');
+      }
     },
     watch:{
       'login':function(newval,oldval){

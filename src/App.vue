@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-header></v-header>
+    <v-header v-on:quit="quit()"></v-header>
     <router-view/>
     <v-footer></v-footer>
   </div>
@@ -8,7 +8,18 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data:function(){
+    return {
+      loginuser:localStorage.getItem('user'),
+    }
+  },
+  methods:{
+    quit:function(){
+      console.log('退出');
+      console.log(this.$children[0]);
+    }
+  }
 }
 import Vue from 'vue'
 

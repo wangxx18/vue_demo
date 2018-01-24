@@ -33,9 +33,9 @@
             <div class="user_card">
               <div>
                 <a class="user_avatar" href="/user/wangxx321">
-                  <img :src="user.avatar_url" :title="user.loginname">
+                  <img :src="user?user.avatar_url:''" :title="user?user.loginname:''">
                 </a>
-                <span class="user_name"><a class="dark" href="/user/wangxx321">{{user.loginname}}</a></span>
+                <span class="user_name"><a class="dark" href="/user/wangxx321">{{user?user.loginname:''}}</a></span>
                 <div class="board clearfix">
                   <div class="floor">
                     <span class="big">积分: 5 </span>
@@ -232,6 +232,7 @@
     },
     components:{List,Page},
     name: 'app',
+    props:['loginuser'],
     methods:{
       topic:function(val){
         this.currentIndex = val;
@@ -244,6 +245,8 @@
       },
     },
     mounted:function(){
+      console.log("传过来数据"+this.loginuser);
+
       if(this.$route.params.user|| localStorage.getItem('user')){
         console.log('接收用户登录信息');
         console.log(localStorage.getItem('user'));
