@@ -16,7 +16,8 @@
         </a>
         <div class="topic_title_wrapper">
           <span class="put_top" v-show=" item.top">置顶</span>
-          <span class="topiclist-tab" v-show="!item.top">{{ item.tab | type}}</span>
+          <span class="put_top" v-show="item.good">精华</span>
+          <span class="topiclist-tab" v-show="!item.top&&!item.good">{{ item.tab | type}}</span>
           <!--<a class="topic_title" :href="'#/details/'+item.id" v-bind:title="item.title">-->
             <!--{{item.title}}-->
           <!--</a>-->
