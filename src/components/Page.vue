@@ -7,7 +7,7 @@
       <li></li>
       <li class="disabled"><a>«</a></li>
       <li class="disabled active"><a>1</a></li>
-      <li><a @click="toParent()">2</a></li>
+      <li @click="toParent()"><a>2</a></li>
       <li><a href="/?tab=ask&amp;page=3">3</a></li>
       <li><a href="/?tab=ask&amp;page=4">4</a></li>
       <li><a href="/?tab=ask&amp;page=5">5</a></li>
@@ -23,13 +23,13 @@
         data:function(){
           return {
             pagelist:[1,2,3,4,5],
-            pData:"4444"
+            pData:"4"
 
           }
         },
         methods:{
           toParent:function(){
-            console.log(11111);
+            console.log(this);
             this.$emit('child-c',this.pData);
           }
         }
