@@ -35,18 +35,26 @@
     data:function(){
       return {
         list:[],
-
+        pageNum:30
       }
     },
-    props:['tab'],
+    props:['tab','page'],
     methods:{
       getData:function(){
-          var url = 'https://cnodejs.org/api/v1/topics/?tab='+this.tab;
+          var url = this.$store.state.url+'/topics/?tab='+this.tab+'&page='+this.page+'&limit='+this.pageNum;
           this.$http.get(url).then(function(rep){
 //          console.log(this.tab);
           console.log(rep);
           this.list = rep.body.data
         })
+      },
+      getPage:function(num){
+        var url = this.$store.state.url+'/topics/?tab='+this.tab+'&page='+num+'&limit='+this.pageNum;
+          this.$http.get(url).then(function(rep){
+//          console.log(this.tab);
+          console.log(rep);
+          this.list = rep.body.data
+      })
       }
     },
     created: function () {
@@ -57,6 +65,12 @@
         this.tab = newval;
         this.getData();
         console.log(newval);
+        console.log(oldval);
+      },
+      'page':function(newval,oldval){
+        this.page = newval;
+        this.getPage(newval);
+        console.log("page"+newval);
         console.log(oldval);
       }
     },

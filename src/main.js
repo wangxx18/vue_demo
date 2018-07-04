@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import Resource from 'vue-resource'
 import Vuex from 'vuex'
-
+import axios from 'axios'
 Vue.use(Vuex)
 Vue.use(Resource)
 Vue.config.productionTip = false
@@ -19,9 +19,12 @@ Vue.component("v-footer",Footer);
 //挂载全局变量
 import global_ from './components/Global.vue'
 Vue.prototype.Global = global_;
+Vue.prototype.axios = axios;
+import store from './store/index'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }

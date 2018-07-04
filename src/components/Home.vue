@@ -196,7 +196,7 @@
                   :class="{'current-tab':index===(currentIndex)}" @click="topic(index)">{{item.text}}</a>
           </div>
           <div class="inner no-padding">
-            <list v-bind:tab="tab"></list>
+            <list v-bind:tab="tab" v-bind:page="page"></list>
             <page v-on:child-c="childData"></page>
           </div>
 
@@ -228,6 +228,7 @@
         msg:'',
         user:{},
         userLogin:false,
+        page:''
       }
     },
     components:{List,Page},
@@ -241,7 +242,9 @@
         console.log(this.currentIndex);
       },
       childData:function(p){
-        console.log(p);
+        console.log("子组件传递过来的页数"+p);
+        this.page = p;
+        console.log(this.page);
       },
     },
     mounted:function(){

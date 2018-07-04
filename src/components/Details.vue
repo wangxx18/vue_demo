@@ -207,13 +207,20 @@
     },
     methods:{
       getData:function(){
-        var url = 'https://cnodejs.org/api/v1/topic/'+this.$route.params.id;
-        this.$http.get(url).then(function(rep){
-          this.list = rep.body.data;
-          this.user = rep.body.data.author.loginname
-        })
+        var url = this.$store.state.url+'/topic/'+this.$route.params.id;
+        this.axios.get(url).then((rep)=>{
+          this.list = rep.data.data;
+          this.user = rep.data.data.author.loginname
+        }).catch((err)=>{
+          console.log(err);
+        });
+        // this.$http.get(url).then(function(rep){
+        //   console.log(this);
+        //   this.list = rep.body.data;
+        //   this.user = rep.body.data.author.loginname
+        // })
       }
-    },
+    }, 
     mounted:function(){
       this.getData();
     }
