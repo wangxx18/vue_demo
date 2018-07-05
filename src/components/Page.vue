@@ -5,9 +5,9 @@
     <!--</ul>-->
     <ul>
       
-      <li @click="toParent()" class="disabled"><a>«</a></li>
+      <li @click="toParent(choosePage-1)" :class="{'disabled':choosePage==1}"><a>«</a></li>
       <li  v-for="(item,index) in pagelist" @click="toParent(index+1)" :class="{'active':index+1==choosePage}"><a>{{item}}</a></li>
-      <li @click="toParent()"><a href="/?tab=ask&amp;page=64">»</a></li>
+      <li @click="toParent(choosePage+1)" :class="{'disabled':choosePage==pagelist.length}"><a >»</a></li>
     </ul>
   </div>
 </template>
@@ -25,6 +25,7 @@
         },
         methods:{
           toParent:function(num){
+            console.log(num);
             this.choosePage = num;
             this.$emit('child-c',num);
           }

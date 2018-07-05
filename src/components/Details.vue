@@ -165,33 +165,72 @@
         <div id="content">
           <div class="panel">
             <div class="header topic_header">
-      <span class="topic_full_title">
-        <span class="put_top" v-show=" list.top">置顶</span>
-        {{list.title}}
-      </span>
+              <span class="topic_full_title">
+                <span class="put_top" v-show=" list.top">置顶</span>
+                {{list.title}}
+              </span>
               <div class="changes">
-        <span>
-          发布于 {{list.create_at | lastTime}}
-        </span>
-                <span>
-          作者 {{user}}
-        </span>
-                <span>
-          {{list.visit_count}} 次浏览
-        </span>
+              <span>
+                发布于 {{list.create_at | lastTime}}
+              </span>
+                      <span>
+                作者 {{user}}
+              </span>
+                      <span>
+                {{list.visit_count}} 次浏览
+              </span>
 
                 <span>
-            最后一次编辑是 {{list.last_reply_at | lastTime}}
-          </span>
+                最后一次编辑是 {{list.last_reply_at | lastTime}}
+              </span>
                 <span> 来自 {{list.tab | type}}</span>
               </div>
+          </div>
+          <div class="inner topic">
+            <div class="topic_content" v-html="list.content">
             </div>
-            <div class="inner topic">
-              <div class="topic_content" v-html="list.content">
+          </div>
+          </div>
+
+          <div class="panel">
+            <div class="header">
+              <span class="col_fade">{{reply_count}} 回复</span>
+            </div>
+            <div v-for="(item, index) in replies" class="cell reply_area reply_item" reply_id="53f318c38f44dfa35154b23d" reply_to_id="" id="53f318c38f44dfa35154b23d">
+              <div class="author_content">
+                <a href="/user/lhfcws" class="user_avatar">
+                  <img :src="item.author.avatar_url" title="lhfcws"></a>
+
+                <div class="user_info">
+                  <a class="dark reply_author" href="/user/lhfcws">{{item.author.loginname}}</a>
+                  <a class="reply_time" href="#53f318c38f44dfa35154b23d">{{index+1}}楼•{{item.create_at | lastTime}}</a>
+                  <span class="reply_by_author" v-show="item.author.loginname == user">作者</span>
+                </div>
+                <div class="user_action">
+                  <span>
+                    <i class="fa up_btn
+                      fa-thumbs-o-up
+                      invisible" title="喜欢"></i>
+                    <span class="up-count">
+                      
+                    </span>
+                  </span>
+                  
+                  <span>
+                    
+                  </span>
+                </div>
+              </div>
+              <div class="reply_content from-lhfcws" v-html="item.content">
+               
+              </div>
+              <div class="clearfix">
+                <div class="reply2_area">
+                  
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -202,15 +241,20 @@
     data:function(){
       return {
         list:{},
-        user:''
+        user:'',
+        reply_count:'',
+        replies:{}
       }
     },
     methods:{
       getData:function(){
         var url = this.$store.state.url+'/topic/'+this.$route.params.id;
         this.axios.get(url).then((rep)=>{
+          console.log(rep);
           this.list = rep.data.data;
-          this.user = rep.data.data.author.loginname
+          this.user = rep.data.data.author.loginname;
+          this.reply_count = rep.data.data.reply_count;
+          this.replies = rep.data.data.replies;
         }).catch((err)=>{
           console.log(err);
         });
@@ -223,6 +267,40 @@
     }, 
     mounted:function(){
       this.getData();
+    },
+    filters: {
+      lastTime: function (val) {
+        var date = new Date(val);
+        var t = Date.now() - date;
+        var d=Math.floor(t/1000/60/60/24),
+          h=Math.floor(t/1000/60/60%24),
+          m=Math.floor(t/1000/60%60),
+          s=Math.floor(t/1000%60);
+        if( d > 0 ) {
+          return d + '天前'
+        }else if( h > 0){
+          return h + '小时前'
+        }else if( m > 0) {
+          return m + '分钟前'
+        }else if( s > 0) {
+          return s + '秒前'
+        }
+      },
+      type: function (val) {
+        if(val == 'share') {
+          return '分享';
+        }
+        if(val == 'good') {
+          return '精华'
+        }
+        if(val == 'ask') {
+          return '问答'
+        }
+        if(val == 'job') {
+          return '招聘'
+        }
+      }
+
     }
   }
 </script>

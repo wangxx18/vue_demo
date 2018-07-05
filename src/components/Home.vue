@@ -275,7 +275,7 @@
     outline: none;
   }
   .home-page{
-
+    cursor: pointer;
   }
 
 </style>
