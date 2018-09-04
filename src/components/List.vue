@@ -59,6 +59,14 @@
     },
     created: function () {
       this.getData();
+
+this.$http.get("/weather/data/sk/101190408.html").then(function(rep){
+          console.log(rep);
+      })
+      // this.$http.get("/apiserver/jkfpjg/indexShowApi/viewchart7").then(function(rep){
+      //     console.log(rep);
+      // })
+
     },
     watch:{
       'tab':function(newval,oldval){

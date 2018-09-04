@@ -19,7 +19,20 @@ module.exports = {
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-
+    proxyTable: {
+    	//本地调试
+  	  '/apiserver': {		//这里是我配置的名字
+		    target: 'http://125.46.57.166:9001', //这个路径是我代理到本地的php服务器,即你要请求的第三方接口
+		    changeOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
+		    pathRewrite: {'^/apiserver': '/'}	//这里重写路径运行后就代理到对应地址
+      },
+      //本地调试
+  	  '/weather': {		//这里是我配置的名字
+		    target: 'http://www.weather.com.cn', //这个路径是我代理到本地的php服务器,即你要请求的第三方接口
+		    changeOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
+		    pathRewrite: {'^/weather': '/'}	//这里重写路径运行后就代理到对应地址
+		  }
+    },
     
     /**
      * Source Maps
