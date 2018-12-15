@@ -17,6 +17,38 @@ export default {
   methods:{
     quit:function(){
       console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);    console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);    console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);    console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
+      console.log(this.$children[0]);  console.log('退出');
       console.log(this.$children[0]);
     }
   }
